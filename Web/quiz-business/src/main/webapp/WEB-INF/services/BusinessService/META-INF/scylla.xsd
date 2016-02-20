@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://scylla/xsd/business" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://scylla/xsd/business">
+    <simpleType name="StatusType">
+        <restriction base="string">
+            <enumeration value="SUCCESS"/>
+            <enumeration value="FAILED"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FacadeType">
+        <restriction base="string">
+            <enumeration value="USER"/>
+            <enumeration value="MYPAGE"/>
+            <enumeration value="ANTI_COMMENT"/>
+            <enumeration value="GROUP_MANAGER"/>
+            <enumeration value="AUTOPOST"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="ActionType">
+        <restriction base="string">
+            <enumeration value="SIGNIN"/>
+        </restriction>
+    </simpleType>
+    <complexType name="User">
+        <sequence>
+            <element minOccurs="0" name="userId" type="long"/>
+            <element minOccurs="0" name="name" type="string"/>
+            <element minOccurs="0" name="email" type="string"/>
+            <element minOccurs="0" name="timeAntiSpam" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="articles" type="tns:Article"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="accountTypes" type="tns:AccountType"/>
+        </sequence>
+    </complexType>
+    <complexType name="AccountType">
+        <sequence>
+            <element minOccurs="0" name="accTypeId" type="long"/>
+            <element minOccurs="0" name="userId" type="long"/>
+            <element minOccurs="0" name="name" type="string"/>
+            <element minOccurs="0" name="description" type="string"/>
+            <element minOccurs="0" name="dayLicense" type="int"/>
+        </sequence>
+    </complexType>
+    <complexType name="Article">
+        <sequence>
+            <element minOccurs="0" name="articleId" type="long"/>
+            <element minOccurs="0" name="userId" type="long"/>
+            <element minOccurs="0" name="name" type="string"/>
+            <element minOccurs="0" name="content" type="string"/>
+            <element minOccurs="0" name="imgs" type="string"/>
+            <element minOccurs="0" name="location" type="string"/>
+            <element minOccurs="0" name="feeling" type="string"/>
+            <element minOccurs="0" name="createDate" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="autoPosts" type="tns:Autopost"/>
+        </sequence>
+    </complexType>
+    <complexType name="Autopost">
+        <sequence>
+            <element minOccurs="0" name="autopostId" type="long"/>
+            <element minOccurs="0" name="articleId" type="long"/>
+            <element minOccurs="0" name="type" type="string"/>
+            <element minOccurs="0" name="dateTimePost" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="BusinessRequest">
+        <sequence>
+            <element minOccurs="0" name="ipAddress" type="string"/>
+            <element minOccurs="0" name="facadeType" type="tns:FacadeType"/>
+            <element minOccurs="0" name="actionType" type="tns:ActionType"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="users" type="tns:User"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="accountTypes" type="tns:AccountType"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="articles" type="tns:Article"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="autoposts" type="tns:Autopost"/>
+        </sequence>
+    </complexType>
+    <complexType name="BusinessResponse">
+        <sequence>
+            <element minOccurs="0" name="statusType" type="tns:StatusType"/>
+            <element minOccurs="0" name="reason" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="users" type="tns:User"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="accountTypes" type="tns:AccountType"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="articles" type="tns:Article"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="autoposts" type="tns:Autopost"/>
+        </sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- This file was auto-generated from WSDL --><!-- by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST) --><serviceGroup>
+    <service name="BusinessService">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.zet.business.server.BusinessServiceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.zet.business.server.BusinessServiceSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="businessAction" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://scylla-business.com">
+            <actionMapping>http://scylla-business.com/businessAction</actionMapping>
+            <outputActionMapping>http://scylla-business.com/portTypebusiness/businessActionResponse</outputActionMapping>
+        </operation>
+        <operation name="hello" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://scylla-business.com">
+            <actionMapping>http://scylla-business.com/hello</actionMapping>
+            <outputActionMapping>http://scylla-business.com/portTypebusiness/helloResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+    http://www.springframework.org/schema/jee
+    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+    http://www.springframework.org/schema/oxm
+	http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
+
+  <mvc:annotation-driven />
+
+  <context:component-scan base-package="com.zet.category.client, com.zet.category.server, com.zet.category.base.dao, com.zet.category.base.manager"/>
+	
+  
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true"></property>
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/config.properties</value>
+			</list>
+		</property>
+	</bean>
+  
+  <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="${jdbc.driver}" />
+	<property name="url" value="${jdbc.url}" />
+	<property name="username" value="${jdbc.username}" />
+	<property name="password" value="${jdbc.password}" />
+  </bean>
+  
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingResources">
+			<list>
+          		<value>com/zet/category/base/hbm/Category.hbm.xml</value>
+          		<value>com/zet/category/base/hbm/Category-hql.hbm.xml</value>
+          		<value>com/zet/category/base/hbm/Slide-hql.hbm.xml</value>
+          		<!-- <value>com/zet/category/base/hbm/Account-hql.hbm.xml</value> -->
+			</list>
+     	</property>
+        <property name="hibernateProperties"><ref bean="hibernateProperties" />
+        </property>
+    </bean>
+  	<bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="/WEB-INF/hibernate.properties" />
+	</bean>
+   	
+	<bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- DAO CONFIG -->
+   	
+   	<bean id="categoryAlbumDAO" class="com.zet.category.base.dao.impl.CategoryAlbumDAOImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+   	<bean id="slideDAO" class="com.zet.category.base.dao.impl.SlideDAOImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+   
+   	<!-- END-DAO CONFIG -->
+   	
+   	<bean id="categoryTransaction" class="com.zet.category.base.manager.impl.CategoryTransactionImpl">
+   		<property name="sessionFactory" ref="sessionFactory"/>
+   	</bean>
+	
+	<!-- aop setting -->
+	<tx:advice id="txDAOAdvice" transaction-manager="hibernateTransactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*" rollback-for="ScyllaSQLException" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="daoMethods" expression="execution(* com.zet.category.base.manager.*Manager.*(..))" />
+		<aop:advisor advice-ref="txDAOAdvice" pointcut-ref="daoMethods" />
+	</aop:config>
+	<!-- end aop setting -->
+	
+</beans>

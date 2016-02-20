@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="scylla-business"
+	targetNamespace="http://scylla-business.com" xmlns:schema="http://scylla-business.com"
+	xmlns:aws="http://scylla-business.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://scylla-business.com"
+			xmlns:tns="http://scylla/xsd/business" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+			<xsd:import namespace="http://scylla/xsd/business"
+				schemaLocation="scylla.xsd" />
+
+			<!-- hello -->
+			<xsd:element name="helloRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="message" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="helloResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="message" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<!-- end-hello -->
+
+			<!-- business action -->
+			<xsd:element name="businessActionRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="businessRequest" type="tns:BusinessRequest" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="businessActionResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="businessResponse" type="tns:BusinessResponse" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<!-- end-business action -->
+
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="businessActionResponse">
+		<wsdl:part name="businessResponse" element="schema:businessActionResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="helloResponse">
+		<wsdl:part name="msg" element="schema:helloResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="businessActionRequest">
+		<wsdl:part name="businessRequest" element="schema:businessActionRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="helloRequest">
+		<wsdl:part name="message" element="schema:helloRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="portTypebusiness">
+		<wsdl:operation name="hello">
+			<wsdl:input message="aws:helloRequest">
+			</wsdl:input>
+			<wsdl:output message="aws:helloResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="businessAction">
+			<wsdl:input message="aws:businessActionRequest">
+			</wsdl:input>
+			<wsdl:output message="aws:businessActionResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="bindingbusiness" type="aws:portTypebusiness">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="hello">
+			<soap:operation soapAction="http://scylla-business.com/hello" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="businessAction">
+			<soap:operation soapAction="http://scylla-business.com/businessAction" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="BusinessService">
+		<wsdl:port name="servicebusiness" binding="aws:bindingbusiness">
+			<soap:address location="http://localhost:1234/services/businessService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

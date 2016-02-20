@@ -1,0 +1,262 @@
+
+/* Icons */
+
+.kids, .c1, .c2, .c3, .c4, .c5, .home_menu, .kidSpeling, .kidWriting, .countTo3, .countTo5, .countTo10, .countTo20, .kidShape, .kidColor, .kidLocation, .kidItem, .kidAnimal, .kidTime, .kidWeather, .kidDayOfWeek, .kidMath, .kidRecognize, .kidTimeS, .kidGame, .speling170, .writing170, .countTo3_170, .countTo5_170, .countTo10_170, .countTo20_170, .shape170, .color170, .location170, .item170, .animal170, .watchingTime170, .weather170, .calendar170{
+	vertical-align: middle;margin-top:0px;
+	background: url(../../imgs/kidMenu.png) no-repeat;
+}
+
+.speling170, .writing170, .countTo3_170, .countTo5_170, .countTo10_170, .countTo20_170, .shape170, .color170, .location170, .item170, .animal170, .watchingTime170, .weather170, .calendar170{
+	display:block;margin:15px auto
+}
+
+.kids{
+	background-position: -6px -6px ;
+	width: 40px;
+	height: 40px;
+}
+
+.c1{
+	background-position: -55px -5px ;
+	width: 40px;
+	height: 40px;
+}
+
+.c2{
+	background-position: -106px -4px ;
+	width: 40px;
+	height: 40px;
+}
+
+.c3{
+	background-position: -156px -6px ;
+	width: 40px;
+	height: 40px;
+}
+
+.c4{
+	background-position: -205px -7px ;
+	width: 40px;
+	height: 40px;
+}
+
+.c5{
+	background-position: -255px -5px ;
+	width: 40px;
+	height: 40px;
+}
+
+
+.kidSpeling{
+	background-position: -4px -54px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidWriting{
+	background-position: -54px -57px ;
+	width: 40px;
+	height: 40px;
+}
+
+.countTo3{
+	background-position: -103px -54px ;
+	width: 40px;
+	height: 40px;
+}
+
+.countTo5{
+	background-position: -155px -53px ;
+	width: 40px;
+	height: 40px;
+}
+
+.countTo10{
+	background-position: -204px -53px ;
+	width: 40px;
+	height: 40px;
+}
+
+.countTo20{
+	background-position: -255px -53px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidShape{
+	background-position: -304px -55px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidColor{
+	background-position: -354px -54px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidLocation{
+	background-position: -404px -55px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidItem{
+	background-position: -454px -56px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidAnimal{
+	background-position: -504px -54px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidTime{
+	background-position: -554px -55px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidWeather{
+	background-position: -5px -104px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidDayOfWeek{
+	background-position: -55px -105px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidMath{
+	background-position: -105px -105px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidRecognize{
+	background-position: -154px -104px ;
+	width: 40px;
+	height: 40px;
+}
+
+.kidTimeS{
+	background-position: -205px -103px;
+	width: 40px;
+	height: 40px;
+}
+.kidGame{
+	background-position: -254px -105px;
+	width: 40px;
+	height: 40px;
+}
+
+.home_menu{
+	background-position: -305px -4px ;
+	width: 40px;
+	height: 40px;
+}
+
+.speling170{
+	background-position: -8px -155px ;
+	width: 170px;
+	height: 170px;
+}
+
+.writing170{
+	background-position: -181px -156px ;
+	width: 170px;
+	height: 170px;
+}
+
+.countTo3_170{
+	background-position: -351px -153px ;
+	width: 170px;
+	height: 170px;
+}
+
+.countTo5_170{
+	background-position: -529px -153px ;
+	width: 170px;
+	height: 170px;
+}
+
+.countTo10_170{
+	background-position: -708px -154px ;
+	width: 170px;
+	height: 170px;
+}
+
+.countTo20_170{
+	background-position: -888px -154px ;
+	width: 170px;
+	height: 170px;
+}
+
+.shape170{
+	background-position: -1061px -154px ;
+	width: 170px;
+	height: 170px;
+}
+
+.color170{
+	background-position: -1223px -152px ;
+	width: 160px;
+	height: 170px;
+}
+
+.location170{
+	background-position: -1391px -150px ;
+	width: 170px;
+	height: 170px;
+}
+
+.item170{
+	background-position: -1568px -149px ;
+	width: 170px;
+	height: 170px;
+}
+
+.animal170{
+	background-position: -1746px -153px ;
+	width: 170px;
+	height: 170px;
+}
+
+.watchingTime170{
+	background-position: -3px -337px ;
+	width: 170px;
+	height: 170px;
+}
+
+.weather170{
+	background-position: -184px -333px ;
+	width: 170px;
+	height: 170px;
+}
+
+.calendar170{
+	background-position: -358px -329px ;
+	width: 170px;
+	height: 170px;
+}
+
+
+/*
+End Icons
+*/
+
+
+.error{
+	color: #ff0000;
+}
+
+table.cmt td{
+	width:200px;height:45px
+}
+table.profile td{
+	width:200px;height:35px
+}

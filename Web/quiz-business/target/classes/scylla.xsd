@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+
+targetNamespace="http://scylla/xsd/business" 
+
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+
+xmlns:tns="http://scylla/xsd/business" 
+
+elementFormDefault="qualified">
+
+	<xsd:simpleType name="StatusType">
+	  <xsd:restriction base="xsd:string">
+	    <xsd:enumeration value="SUCCESS"/>
+	    <xsd:enumeration value="FAILED"/>
+	  </xsd:restriction>
+	</xsd:simpleType> 
+
+	<xsd:simpleType name="FacadeType">
+	  <xsd:restriction base="xsd:string">
+	    <xsd:enumeration value="USER"/>
+	    <xsd:enumeration value="MYPAGE"/>
+	    <xsd:enumeration value="ANTI_COMMENT"/>
+	    <xsd:enumeration value="GROUP_MANAGER"/>
+	    <xsd:enumeration value="AUTOPOST"/>
+	  </xsd:restriction>
+	</xsd:simpleType> 
+
+
+	<xsd:simpleType name="ActionType">
+	  	<xsd:restriction base="xsd:string">
+	  	
+	  		<!-- USER-->
+	    	<xsd:enumeration value="SIGNIN"/>
+	    	
+	    	
+	  </xsd:restriction>
+	</xsd:simpleType> 
+
+
+	<xsd:complexType name="User">
+		<xsd:sequence>
+            <xsd:element minOccurs="0" 		name="userId" 								type="xsd:long"/>
+            <xsd:element minOccurs="0" 		name="name" 								type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="email"	 							type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="timeAntiSpam" 						type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="articles" 			type="tns:Article"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="accountTypes" 		type="tns:AccountType"/>
+        </xsd:sequence>
+	</xsd:complexType>
+	
+	
+	<xsd:complexType name="AccountType">
+		<xsd:sequence>
+            <xsd:element minOccurs="0" 		name="accTypeId" 							type="xsd:long"/>
+            <xsd:element minOccurs="0" 		name="userId" 								type="xsd:long"/>
+            <xsd:element minOccurs="0" 		name="name" 								type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="description" 							type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="dayLicense"	 						type="xsd:int"/>
+        </xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Article">
+		<xsd:sequence>
+            <xsd:element minOccurs="0" 		name="articleId" 							type="xsd:long"/>
+            <xsd:element minOccurs="0" 		name="userId" 								type="xsd:long"/>
+            <xsd:element minOccurs="0" 		name="name" 								type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="content"	 							type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="imgs"	 								type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="location"	 							type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="feeling"	 							type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="createDate"	 						type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="autoPosts" 			type="tns:Autopost"/>
+        </xsd:sequence>
+	</xsd:complexType>
+	
+		<xsd:complexType name="Autopost">
+		<xsd:sequence>
+            <xsd:element minOccurs="0" 		name="autopostId" 							type="xsd:long"/>
+            <xsd:element minOccurs="0" 		name="articleId" 							type="xsd:long"/>
+            <xsd:element minOccurs="0" 		name="type" 								type="xsd:string"/>
+            <xsd:element minOccurs="0" 		name="dateTimePost"	 						type="xsd:string"/>
+        </xsd:sequence>
+	</xsd:complexType>
+	
+	
+	
+    <xsd:complexType name="BusinessRequest">
+        <xsd:sequence>
+        	<xsd:element minOccurs="0" name="ipAddress"									type="xsd:string"/>
+        	<xsd:element minOccurs="0" name="facadeType" 								type="tns:FacadeType"/>
+        	<xsd:element minOccurs="0" name="actionType" 								type="tns:ActionType"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="users" 				type="tns:User"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="accountTypes" 		type="tns:AccountType"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="articles" 			type="tns:Article"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="autoposts" 			type="tns:Autopost"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="BusinessResponse">
+        <xsd:sequence>
+        	<xsd:element minOccurs="0" name="statusType" 								type="tns:StatusType"/>
+        	<xsd:element minOccurs="0" name="reason" 									type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="users" 				type="tns:User"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="accountTypes" 		type="tns:AccountType"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="articles" 			type="tns:Article"/>
+        	<xsd:element maxOccurs="unbounded" minOccurs="0" name="autoposts" 			type="tns:Autopost"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+
+</schema>

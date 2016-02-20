@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<groupId>com.zet</groupId>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>category-client</artifactId>
+	<version>0.1.0</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<jettyVersion>7.2.0.v20101020</jettyVersion>
+		<axisVersion>1.6.2</axisVersion>
+		<jibxVersion>1.2.4.5</jibxVersion>
+		<springVersion>3.1.0.RELEASE</springVersion>
+		<tilesVersion>2.2.2</tilesVersion>
+		<hibernateVersion>3.3.2.GA</hibernateVersion>
+	</properties>
+
+	<dependencies>
+	
+		<!-- zet framework -->
+		<dependency>
+		 	<groupId>com.zet</groupId>
+		 	<artifactId>zetframework</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.jibx</groupId>
+			<artifactId>jibx-run</artifactId>
+			<version>${jibxVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jibx</groupId>
+			<artifactId>jibx-extras</artifactId>
+			<version>${jibxVersion}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.zet</groupId>
+			<artifactId>schema</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<sourceDirectory>.</sourceDirectory>
+		<plugins>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <configuration>
+		        <includes>
+		            <include>src/main/java/com/zet/category/client/*.java</include>
+		            <include>src/main/java/com/zet/category/util/*.java</include>
+		            <include>src/main/java/com/zet/category/base/**/*.java</include>
+		            <include>src/main/java/com/zet/category/enumeration/**/*.java</include>
+		        </includes>
+		        </configuration>
+	        </plugin>
+	        
+	        <plugin>
+				<groupId>org.jibx</groupId>
+				<artifactId>jibx-maven-plugin</artifactId>
+				<version>${jibxVersion}</version>
+				<configuration>
+					<schemaBindingDirectory>src/main/jibx/category</schemaBindingDirectory>
+					<includeSchemaBindings>
+						<includeSchemaBinding>binding.xml</includeSchemaBinding>
+					</includeSchemaBindings>
+					<verbose>true</verbose>
+				</configuration>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>bind</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+	        
+		</plugins>
+	</build>
+</project>

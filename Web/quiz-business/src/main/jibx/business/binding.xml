@@ -1,0 +1,77 @@
+<binding xmlns:tns="http://scylla/xsd/business" name="binding" package="com.zet.business.base.entities" trim-whitespace="true" force-classes="true">
+  <namespace uri="http://scylla/xsd/business" default="elements" prefix="tns"/>
+  <format label="tns:StatusType" type="com.zet.business.base.entities.StatusType"/>
+  <format label="tns:FacadeType" type="com.zet.business.base.entities.FacadeType"/>
+  <format label="tns:ActionType" type="com.zet.business.base.entities.ActionType"/>
+  <mapping abstract="true" type-name="tns:User" class="com.zet.business.base.entities.User">
+    <value style="element" name="userId" get-method="getUserId" set-method="setUserId" usage="optional"/>
+    <value style="element" name="name" get-method="getName" set-method="setName" usage="optional"/>
+    <value style="element" name="email" get-method="getEmail" set-method="setEmail" usage="optional"/>
+    <value style="element" name="timeAntiSpam" get-method="getTimeAntiSpam" set-method="setTimeAntiSpam" usage="optional"/>
+    <collection get-method="getArticleList" set-method="setArticleList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:Article" name="articles"/>
+    </collection>
+    <collection get-method="getAccountTypeList" set-method="setAccountTypeList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:AccountType" name="accountTypes"/>
+    </collection>
+  </mapping>
+  <mapping abstract="true" type-name="tns:AccountType" class="com.zet.business.base.entities.AccountType">
+    <value style="element" name="accTypeId" get-method="getAccTypeId" set-method="setAccTypeId" usage="optional"/>
+    <value style="element" name="userId" get-method="getUserId" set-method="setUserId" usage="optional"/>
+    <value style="element" name="name" get-method="getName" set-method="setName" usage="optional"/>
+    <value style="element" name="description" get-method="getDescription" set-method="setDescription" usage="optional"/>
+    <value style="element" name="dayLicense" get-method="getDayLicense" set-method="setDayLicense" usage="optional"/>
+  </mapping>
+  <mapping abstract="true" type-name="tns:Article" class="com.zet.business.base.entities.Article">
+    <value style="element" name="articleId" get-method="getArticleId" set-method="setArticleId" usage="optional"/>
+    <value style="element" name="userId" get-method="getUserId" set-method="setUserId" usage="optional"/>
+    <value style="element" name="name" get-method="getName" set-method="setName" usage="optional"/>
+    <value style="element" name="content" get-method="getContent" set-method="setContent" usage="optional"/>
+    <value style="element" name="imgs" get-method="getImgs" set-method="setImgs" usage="optional"/>
+    <value style="element" name="location" get-method="getLocation" set-method="setLocation" usage="optional"/>
+    <value style="element" name="feeling" get-method="getFeeling" set-method="setFeeling" usage="optional"/>
+    <value style="element" name="createDate" get-method="getCreateDate" set-method="setCreateDate" usage="optional"/>
+    <collection get-method="getAutoPostList" set-method="setAutoPostList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:Autopost" name="autoPosts"/>
+    </collection>
+  </mapping>
+  <mapping abstract="true" type-name="tns:Autopost" class="com.zet.business.base.entities.Autopost">
+    <value style="element" name="autopostId" get-method="getAutopostId" set-method="setAutopostId" usage="optional"/>
+    <value style="element" name="articleId" get-method="getArticleId" set-method="setArticleId" usage="optional"/>
+    <value style="element" name="type" get-method="getType" set-method="setType" usage="optional"/>
+    <value style="element" name="dateTimePost" get-method="getDateTimePost" set-method="setDateTimePost" usage="optional"/>
+  </mapping>
+  <mapping abstract="true" type-name="tns:BusinessRequest" class="com.zet.business.base.entities.BusinessRequest">
+    <value style="element" name="ipAddress" get-method="getIpAddress" set-method="setIpAddress" usage="optional"/>
+    <value style="element" name="facadeType" get-method="getFacadeType" set-method="setFacadeType" usage="optional" format="tns:FacadeType"/>
+    <value style="element" name="actionType" get-method="getActionType" set-method="setActionType" usage="optional" format="tns:ActionType"/>
+    <collection get-method="getUserList" set-method="setUserList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:User" name="users"/>
+    </collection>
+    <collection get-method="getAccountTypeList" set-method="setAccountTypeList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:AccountType" name="accountTypes"/>
+    </collection>
+    <collection get-method="getArticleList" set-method="setArticleList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:Article" name="articles"/>
+    </collection>
+    <collection get-method="getAutopostList" set-method="setAutopostList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:Autopost" name="autoposts"/>
+    </collection>
+  </mapping>
+  <mapping abstract="true" type-name="tns:BusinessResponse" class="com.zet.business.base.entities.BusinessResponse">
+    <value style="element" name="statusType" get-method="getStatusType" set-method="setStatusType" usage="optional" format="tns:StatusType"/>
+    <value style="element" name="reason" get-method="getReason" set-method="setReason" usage="optional"/>
+    <collection get-method="getUserList" set-method="setUserList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:User" name="users"/>
+    </collection>
+    <collection get-method="getAccountTypeList" set-method="setAccountTypeList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:AccountType" name="accountTypes"/>
+    </collection>
+    <collection get-method="getArticleList" set-method="setArticleList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:Article" name="articles"/>
+    </collection>
+    <collection get-method="getAutopostList" set-method="setAutopostList" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="tns:Autopost" name="autoposts"/>
+    </collection>
+  </mapping>
+</binding>
